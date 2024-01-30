@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from 'react';
 import { getPosts } from '../api/PostData';
 import PostCard from '../components/Postcard';
