@@ -2,7 +2,7 @@
   "name": "wander-lens",
   "private": true,
   "version": "1.0.0",
-  "author": "Mason Austin",
+  "author": "Jay Lhomme",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
