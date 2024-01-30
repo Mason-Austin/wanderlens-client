@@ -1,25 +1,24 @@
-import { Button } from 'react-bootstrap';
-import { signOut } from '../utils/auth';
-import { useAuth } from '../utils/context/authContext';
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useState, useEffect } from 'react';
+import { getPosts } from '../api/PostData';
+import PostCard from '../components/Postcard';
 
 function Home() {
-  const { user } = useAuth();
+  const [posts, setPosts] = useState([]);
+  const getAllPosts = () => {
+    getPosts().then(setPosts);
+  };
+
+  useEffect(() => {
+    getAllPosts();
+    console.warn(posts);
+  }, []);
+
   return (
-    <div
-      className="text-center d-flex flex-column justify-content-center align-content-center"
-      style={{
-        height: '90vh',
-        padding: '30px',
-        maxWidth: '400px',
-        margin: '0 auto',
-      }}
-    >
-      <h1>Hello {user.fbUser.displayName}! </h1>
-      <p>Your Bio: {user.bio}</p>
-      <p>Click the button below to logout!</p>
-      <Button variant="danger" type="button" size="lg" className="copy-btn" onClick={signOut}>
-        Sign Out
-      </Button>
+    <div className="d-flex flex-wrap" style={{ justifyContent: 'space-evenly' }}>
+      {posts.map((post) => (
+        <PostCard key={post.id} postObject={post} onUpdate={getAllPosts} />
+      ))}
     </div>
   );
 }

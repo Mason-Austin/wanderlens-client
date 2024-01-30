@@ -2,7 +2,7 @@
   "name": "wander-lens",
   "private": true,
   "version": "1.0.0",
-  "author": "Jay Lhomme",
+  "author": "Frank Campos",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
