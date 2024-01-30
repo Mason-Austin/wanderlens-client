@@ -77,6 +77,20 @@ const updatePost = (payload) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+// GET A SINGLE POST'S COMMENTS
+const getPostsComments = (id) => new Promise((resolve, reject) => {
+  fetch(`${clientCredentials.databaseURL}/comments/?orderBy="user"&equalTo="${id}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+  })
+    .then((resp) => resolve(resp.json()))
+    .catch(reject);
+});
+// first attempt, not finished!
+
 export {
   getPosts,
   getMyPosts,
@@ -84,4 +98,5 @@ export {
   createPost,
   deleteSinglePost,
   updatePost,
+  getPostsComments,
 };
