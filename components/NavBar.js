@@ -23,11 +23,14 @@ export default function NavBar() {
             <Link passHref href="/">
               <Nav.Link>Home</Nav.Link>
             </Link>
+            <Link passHref href="/post/new">
+              <Nav.Link>Create Post</Nav.Link>
+            </Link>
             <Link passHref href="/my-posts">
               <Nav.Link>My Posts</Nav.Link>
             </Link>
-            <Button variant="danger" onClick={signOut}>
-              Sign Out
+            <Button type="button" className="justify-content-center align-content-center" size="sm" variant="danger" onClick={signOut}>
+              SIGN OUT
             </Button>
           </Nav>
         </Navbar.Collapse>
