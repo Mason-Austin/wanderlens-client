@@ -8,22 +8,34 @@ const getPosts = () => new Promise((resolve, reject) => {
       Accept: 'application/json',
     },
   })
-    .then((resp) => resolve(resp.json()))
+    .then((response) => response.json())
+    .then((data) => {
+      if (data) {
+        resolve(Object.values(data));
+      } else {
+        resolve([]);
+      }
+    })
     .catch(reject);
 });
 
 const getMyPosts = (uid) => new Promise((resolve, reject) => {
-  fetch(`${clientCredentials.databaseURL}/posts`, {
+  fetch(`${clientCredentials.databaseURL}/posts.json`, {
     method: 'GET',
-    body: JSON.stringify(
-      uid,
-    ),
+    body: JSON.stringify(uid),
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/json',
     },
   })
-    .then((resp) => resolve(resp.json()))
+    .then((response) => response.json())
+    .then((data) => {
+      if (data) {
+        resolve(Object.values(data));
+      } else {
+        resolve([]);
+      }
+    })
     .catch(reject);
 });
 
@@ -78,10 +90,5 @@ const updatePost = (payload) => new Promise((resolve, reject) => {
 });
 
 export {
-  getPosts,
-  getMyPosts,
-  getSinglePost,
-  createPost,
-  deleteSinglePost,
-  updatePost,
+  getPosts, getMyPosts, getSinglePost, createPost, deleteSinglePost, updatePost,
 };

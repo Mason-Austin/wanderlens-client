@@ -1,4 +1,4 @@
-import { getPosts } from '../.next/api/PostData';
+import { getPosts } from '../api/PostData';
 import { useAuth } from '../utils/context/authContext';
 
 function MyPosts() {
