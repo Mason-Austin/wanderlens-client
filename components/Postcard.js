@@ -34,7 +34,7 @@ function PostCard({ postObject, onUpdate }) {
       <Card.Body>
         <Card.Title>{postObject.title}</Card.Title>
         {/* DYNAMIC LINK TO VIEW THE POST DETAILS  */}
-        <Link href={`/${postObject.id}`} passHref>
+        <Link href={`/post/${postObject.id}`} passHref>
           <Button variant="primary" className="m-2" style={{ boxShadow: '0px 0px 10px rgba(255, 255, 255, 0.5)' }}>
             VIEW
           </Button>
