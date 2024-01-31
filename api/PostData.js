@@ -60,7 +60,8 @@ const getSinglePost = (id) => new Promise((resolve, reject) => {
       Accept: 'application/json',
     },
   })
-    .then((resp) => resolve(resp.json()))
+    .then((response) => response.json())
+    .then((data) => resolve(data))
     .catch(reject);
 });
 
@@ -104,11 +105,5 @@ const getPostsComments = (id) => new Promise((resolve, reject) => {
 // first attempt, not finished!
 
 export {
-  getPosts,
-  getMyPosts,
-  getSinglePost,
-  createPost,
-  deleteSinglePost,
-  updatePost,
-  getPostsComments,
+  getPosts, getMyPosts, getSinglePost, createPost, deleteSinglePost, updatePost, getPostsComments,
 };
