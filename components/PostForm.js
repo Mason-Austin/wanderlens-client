@@ -8,7 +8,7 @@ import { useAuth } from '../utils/context/authContext';
 import { updatePost, createPost } from '../api/PostData';
 
 const initialState = {
-  user: '',
+  user_id: '',
   title: '',
   image_url: '',
   content: '',
@@ -46,14 +46,15 @@ function PostForm({ obj }) {
       <h2 className="text-white mt-5">{obj.id ? 'Update' : 'Create'} Post</h2>
 
       {/* USER INPUT  */}
-      {/* <FloatingLabel controlId="floatingInput3" label="Post User" className="mb-3">
+      {/* <FloatingLabel controlId="floatingInput3" label="" className="mb-3">
         <Form.Control
           type="text"
           placeholder="Enter user"
           name="user"
-          value={formInput.user}
+          value={formInput.user_id?.uid}
           onChange={handleChange}
-          required
+          disabled
+          // readOnly
         />
       </FloatingLabel> */}
 
