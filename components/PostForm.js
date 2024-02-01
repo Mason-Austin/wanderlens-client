@@ -8,9 +8,8 @@ import { useAuth } from '../utils/context/authContext';
 import { updatePost, createPost } from '../api/PostData';
 
 const initialState = {
-  user_id: '',
   title: '',
-  image_url: '',
+  imageUrl: '',
   content: '',
 };
 function PostForm({ obj }) {
@@ -31,13 +30,8 @@ function PostForm({ obj }) {
     if (obj.id) {
       updatePost(formInput).then(() => router.push(`/post/${obj.id}`));
     } else {
-      const payload = { ...formInput, uid: user.uid };
-      createPost(payload).then(({ name }) => {
-        const patchPayload = { id: name };
-        updatePost(patchPayload).then(() => {
-          router.push('/');
-        });
-      });
+      const payload = { ...formInput, userId: user.id };
+      createPost(payload).then(() => router.push('/'));
     }
   };
 
@@ -75,8 +69,8 @@ function PostForm({ obj }) {
         <Form.Control
           type="url"
           placeholder="Enter an image url"
-          name="image_url"
-          value={formInput.image_url}
+          name="imageUrl"
+          value={formInput.imageUrl}
           onChange={handleChange}
           required
         />
@@ -103,9 +97,8 @@ function PostForm({ obj }) {
 
 PostForm.propTypes = {
   obj: PropTypes.shape({
-    user: PropTypes.string,
     title: PropTypes.string,
-    image_url: PropTypes.string,
+    imageUrl: PropTypes.string,
     content: PropTypes.string,
     id: PropTypes.string,
   }),
