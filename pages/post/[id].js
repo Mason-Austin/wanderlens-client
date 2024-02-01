@@ -13,6 +13,8 @@ export default function ViewPost() {
   const { id } = router.query;
   const { user } = useAuth();
 
+  console.warn('this is my ID', id);
+
   useEffect(() => {
     if (id) {
       getSinglePost(id).then((data) => setPost(data));
@@ -68,7 +70,7 @@ export default function ViewPost() {
         <Comment
           key={comment.id}
           content={comment.content}
-          isUserComment={comment.user === id}
+          isUserComment={comment.user === user.id}
           onEdit={() => handleEdit(comment.id)}
           onDelete={() => handleDelete(comment.id)}
         />
