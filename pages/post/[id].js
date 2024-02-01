@@ -36,6 +36,7 @@ export default function ViewPost() {
     console.warn('Delete comment with id:', commentId);
   };
 
+  console.warn('thisis my post id', viewPost.id);
   return (
     <>
       <Card
