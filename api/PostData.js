@@ -73,7 +73,9 @@ const deleteSinglePost = (id) => new Promise((resolve, reject) => {
       Accept: 'application/json',
     },
   })
-    .then((resp) => resolve(resp.json()))
+    .then((response) => resolve(response))
+    // .then((response) => response.json())
+    // .then((data) => resolve(data))
     .catch(reject);
 });
 

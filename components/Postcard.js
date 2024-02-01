@@ -40,7 +40,7 @@ function PostCard({ postObject, onUpdate }) {
           </Button>
         </Link>
         {/* DYNAMIC LINK TO EDIT THE POST DETAILS  */}
-        <Link href={`/edit/${postObject.id}`} passHref>
+        <Link href={`/post/edit/${postObject.id}`} passHref>
           <Button variant="info" style={{ boxShadow: '0px 1rem 1.5rem rgba(0, 0, 0, 0.5)' }}>
             EDIT
           </Button>
