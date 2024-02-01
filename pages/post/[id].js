@@ -70,9 +70,10 @@ export default function ViewPost() {
         <Comment
           key={comment.id}
           content={comment.content}
-          isUserComment={comment.user === user.id}
+          isUserComment={comment.user.id === user.id}
           onEdit={() => handleEdit(comment.id)}
           onDelete={() => handleDelete(comment.id)}
+          commentUser={comment.user}
         />
       ))}
 
