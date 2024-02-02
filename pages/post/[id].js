@@ -13,7 +13,7 @@ export default function ViewPost() {
   const { id } = router.query;
   const { user } = useAuth();
 
-  console.warn('this is my ID', id);
+  console.warn('this is my post', viewPost);
 
   useEffect(() => {
     if (id) {
@@ -78,10 +78,17 @@ export default function ViewPost() {
         />
       ))}
 
-      {/* Add Comment Button */}
-      <Button variant="primary" style={{ marginTop: '10px' }}>
+      <Button
+        onClick={() => router.push({
+          pathname: '/comment/[id]',
+          query: { id: viewPost.id },
+        })}
+        variant="primary"
+        style={{ marginTop: '10px' }}
+      >
         Add Comment
       </Button>
+
     </>
   );
 }
