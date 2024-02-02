@@ -49,7 +49,7 @@ function PostCard({ postObject, onUpdate }) {
           </Button>
         </Link>
         {/* DYNAMIC LINK TO EDIT THE POST DETAILS  */}
-        <Link href={`/edit/${postObject.id}`} passHref>
+        <Link href={`/post/edit/${postObject.id}`} passHref>
           {editMyPost()}
         </Link>
         {(user.id === postObject.user?.id) ? (
