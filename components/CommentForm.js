@@ -29,7 +29,7 @@ function CommentForm() {
 
   useEffect(() => {
     getSinglePost(id).then((data) => setPost(data));
-  }, []);
+  }, [id]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
