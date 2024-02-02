@@ -35,7 +35,7 @@ function CommentForm() {
     e.preventDefault();
 
     const payload = { ...formInput, userId: user.id, postId: post.id };
-    createComment(payload).then(() => router.push('/'));
+    createComment(payload).then(() => router.push('/')); // change to /post/id
   };
 
   return (
