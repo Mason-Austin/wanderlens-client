@@ -29,7 +29,7 @@ const getMyComments = (uid) => new Promise((resolve, reject) => {
 
 const createComment = (payload) => new Promise((resolve, reject) => {
   fetch(`${clientCredentials.databaseURL}/comments`, {
-    method: 'Comment',
+    method: 'POST',
     body: JSON.stringify(payload),
     headers: {
       'Content-Type': 'application/json',
