@@ -3,10 +3,10 @@ import { useRouter } from 'next/router';
 import { getSinglePost } from '../../../api/PostData';
 import PostForm from '../../../components/PostForm';
 
-export default function EditBook() {
+export default function EditPost() {
   const [editItem, setEditItem] = useState({});
   const router = useRouter();
-  // grab the firebasekey
+  // grab the id-key
   const { id } = router.query;
 
   // make a call to the API to get the post data

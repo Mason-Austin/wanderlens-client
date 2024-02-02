@@ -30,6 +30,13 @@ function PostForm({ obj }) {
     if (obj.id) {
       updatePost(formInput).then(() => router.push(`/post/${obj.id}`));
     } else {
+      // const payload = { ...formInput, userId: user.id };
+      // createPost(payload).then(({ name }) => {
+      //   const patchPayload = { id: name };
+      //   updatePost(patchPayload).then(() => {
+      //     router.push('/');
+      //   });
+      // });
       const payload = { ...formInput, userId: user.id };
       createPost(payload).then(() => router.push('/'));
     }
@@ -100,7 +107,7 @@ PostForm.propTypes = {
     title: PropTypes.string,
     imageUrl: PropTypes.string,
     content: PropTypes.string,
-    id: PropTypes.string,
+    id: PropTypes.number,
   }),
 };
 

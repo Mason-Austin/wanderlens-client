@@ -19,10 +19,10 @@ const getPosts = () => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-const getMyPosts = (uid) => new Promise((resolve, reject) => {
-  fetch(`${clientCredentials.databaseURL}/posts.json`, {
+const getMyPosts = (id) => new Promise((resolve, reject) => {
+  fetch(`${clientCredentials.databaseURL}/posts`, {
     method: 'GET',
-    body: JSON.stringify(uid),
+    body: JSON.stringify(id),
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/json',
@@ -73,9 +73,22 @@ const deleteSinglePost = (id) => new Promise((resolve, reject) => {
       Accept: 'application/json',
     },
   })
-    .then((resp) => resolve(resp.json()))
+    .then((response) => response.json())
+    .then((data) => resolve(data))
     .catch(reject);
 });
+
+// const deleteSinglePost = (id) => new Promise((resolve, reject) => {
+//   fetch(`${clientCredentials.databaseURL}/posts/${id}`, {
+//     method: 'DELETE',
+//     headers: {
+//       'Content-Type': 'application/json',
+//     },
+//   })
+//     .then((response) => response.json())
+//     .then((data) => resolve(data))
+//     .catch(reject);
+// });
 
 const updatePost = (payload) => new Promise((resolve, reject) => {
   fetch(`${clientCredentials.databaseURL}/posts/${payload.id}`, {
@@ -91,19 +104,19 @@ const updatePost = (payload) => new Promise((resolve, reject) => {
 });
 
 // GET A SINGLE POST'S COMMENTS
-const getPostsComments = (id) => new Promise((resolve, reject) => {
-  fetch(`${clientCredentials.databaseURL}/comments/?orderBy="user"&equalTo="${id}`, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-      Accept: 'application/json',
-    },
-  })
-    .then((resp) => resolve(resp.json()))
-    .catch(reject);
-});
+// const getPostsComments = (id) => new Promise((resolve, reject) => {
+//   fetch(`${clientCredentials.databaseURL}/comments/?orderBy="user"&equalTo="${id}`, {
+//     method: 'GET',
+//     headers: {
+//       'Content-Type': 'application/json',
+//       Accept: 'application/json',
+//     },
+//   })
+//     .then((resp) => resolve(resp.json()))
+//     .catch(reject);
+// });
 // first attempt, not finished!
 
 export {
-  getPosts, getMyPosts, getSinglePost, createPost, deleteSinglePost, updatePost, getPostsComments,
+  getPosts, getMyPosts, getSinglePost, createPost, deleteSinglePost, updatePost,
 };
