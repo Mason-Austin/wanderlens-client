@@ -74,12 +74,10 @@ export default function ViewPost() {
       {viewPost.comments && viewPost.comments.map((comment) => <Comment key={comment.id} content={comment.content} isUserComment={comment.user.id === user.id} onEdit={() => handleEdit(comment.id)} onDelete={() => handleDelete(comment.id, comment.content)} commentUser={comment.user} />)}
 
       <Button
-        onClick={() =>
-          router.push({
-            pathname: '/comment/[id]',
-            query: { id: viewPost.id },
-          })
-        }
+        onClick={() => router.push({
+          pathname: '/comment/[id]',
+          query: { id: viewPost.id },
+        })}
         variant="primary"
         style={{ marginTop: '10px' }}
       >
