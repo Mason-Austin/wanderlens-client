@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 
 function Comment({
-  content, isUserComment, onEdit, onDelete,
+  content, isUserComment, onEdit, onDelete, commentUser,
 }) {
   return (
     <Card style={{ marginBottom: '10px' }}>
       <Card.Body>
         <Card.Text>
-          {isUserComment ? 'My comment:' : "Someone else's comment: "}
+          {isUserComment ? 'My comment: ' : `${commentUser.name}:${' '}`}
           {content}
         </Card.Text>
         {isUserComment && (
@@ -28,6 +28,8 @@ Comment.propTypes = {
   isUserComment: PropTypes.bool.isRequired,
   onEdit: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  commentUser: PropTypes.object.isRequired,
 };
 
 export default Comment;

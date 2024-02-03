@@ -13,6 +13,8 @@ export default function ViewPost() {
   const { id } = router.query;
   const { user } = useAuth();
 
+  console.warn('this is my post', viewPost);
+
   useEffect(() => {
     if (id) {
       getSinglePost(id).then((data) => setPost(data));
@@ -34,6 +36,7 @@ export default function ViewPost() {
     console.warn('Delete comment with id:', commentId);
   };
 
+  console.warn('thisis my post id', viewPost.id);
   return (
     <>
       <Card
@@ -68,16 +71,24 @@ export default function ViewPost() {
         <Comment
           key={comment.id}
           content={comment.content}
-          isUserComment={comment.user === id}
+          isUserComment={comment.user.id === user.id}
           onEdit={() => handleEdit(comment.id)}
           onDelete={() => handleDelete(comment.id)}
+          commentUser={comment.user}
         />
       ))}
 
-      {/* Add Comment Button */}
-      <Button variant="primary" style={{ marginTop: '10px' }}>
+      <Button
+        onClick={() => router.push({
+          pathname: '/comment/[id]',
+          query: { id: viewPost.id },
+        })}
+        variant="primary"
+        style={{ marginTop: '10px' }}
+      >
         Add Comment
       </Button>
+
     </>
   );
 }
