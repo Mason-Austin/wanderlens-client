@@ -76,18 +76,6 @@ const deleteSinglePost = (id) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-// const deleteSinglePost = (id) => new Promise((resolve, reject) => {
-//   fetch(`${clientCredentials.databaseURL}/posts/${id}`, {
-//     method: 'DELETE',
-//     headers: {
-//       'Content-Type': 'application/json',
-//     },
-//   })
-//     .then((response) => response.json())
-//     .then((data) => resolve(data))
-//     .catch(reject);
-// });
-
 const updatePost = (payload) => new Promise((resolve, reject) => {
   fetch(`${clientCredentials.databaseURL}/posts/${payload.id}`, {
     method: 'PUT',

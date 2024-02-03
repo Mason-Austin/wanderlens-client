@@ -4,7 +4,6 @@ import { Button } from 'react-bootstrap';
 import Link from 'next/link';
 import { getPosts } from '../api/PostData';
 import PostCard from '../components/Postcard';
-import { snakeCaser } from '../utils/CaseSwitch';
 
 function Home() {
   const [posts, setPosts] = useState([]);
@@ -30,5 +29,5 @@ function Home() {
     </div>
   );
 }
-console.warn(snakeCaser('imageUrl'));
+
 export default Home;

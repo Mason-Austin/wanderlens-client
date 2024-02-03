@@ -3,7 +3,7 @@ import { getMyPosts } from '../api/PostData';
 import PostCard from '../components/Postcard';
 import { useAuth } from '../utils/context/authContext';
 
-function MyPosts(id) {
+function MyPosts() {
   const { user } = useAuth();
   const [posts, setPosts] = useState([]);
   const getAllMyPosts = () => {
