@@ -66,6 +66,7 @@ export default function ViewPost() {
         />
         <Card.Body>
           <Card.Text>Tags: {viewPost.tags.map((tag) => tag.label).join(', ')}</Card.Text>
+          <Button>Tags</Button>
           <Card.Text>Posted by: {user.name}</Card.Text>
         </Card.Body>
       </Card>
