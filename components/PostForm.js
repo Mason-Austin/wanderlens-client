@@ -28,15 +28,9 @@ function PostForm({ obj }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (obj.id) {
-      updatePost(formInput).then(() => router.push(`/post/${obj.id}`));
+      const payload = { ...formInput, id: obj.id };
+      updatePost(payload).then(() => router.push(`/post/${obj.id}`));
     } else {
-      // const payload = { ...formInput, userId: user.id };
-      // createPost(payload).then(({ name }) => {
-      //   const patchPayload = { id: name };
-      //   updatePost(patchPayload).then(() => {
-      //     router.push('/');
-      //   });
-      // });
       const payload = { ...formInput, userId: user.id };
       createPost(payload).then(() => router.push('/'));
     }
