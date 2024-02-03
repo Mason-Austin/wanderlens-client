@@ -7,12 +7,13 @@ function MyPosts() {
   const { user } = useAuth();
   const [posts, setPosts] = useState([]);
   const getAllMyPosts = () => {
-    getMyPosts().then(setPosts);
+    getMyPosts(user.id).then(setPosts);
   };
 
   useEffect(() => {
     getAllMyPosts();
     console.warn(posts);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   console.warn(getMyPosts);

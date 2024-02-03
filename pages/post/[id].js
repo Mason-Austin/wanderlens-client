@@ -6,6 +6,7 @@ import Button from 'react-bootstrap/Button';
 import Comment from '../../components/Comment';
 import { getSinglePost } from '../../api/PostData';
 import { useAuth } from '../../utils/context/authContext';
+import { deleteSingleComment } from '../../api/CommentData';
 
 export default function ViewPost() {
   const [viewPost, setPost] = useState(null);
@@ -24,16 +25,22 @@ export default function ViewPost() {
   if (!viewPost) {
     return <div>Loading...</div>;
   }
-  console.warn(viewPost);
-  // Handlers for edit and delete actions
+
   const handleEdit = (commentId) => {
-    // Logic to handle editing a comment
     console.warn('Edit comment with id:', commentId);
+
+    router.push({
+      pathname: `/comment/edit/${commentId}`,
+    });
   };
 
-  const handleDelete = (commentId) => {
-    // warnic to handle deleting a comment
+  const handleDelete = (commentId, commentContent) => {
     console.warn('Delete comment with id:', commentId);
+    if (window.confirm(`Do you want to Delete this comment: ${commentContent}'?`)) {
+      deleteSingleComment(commentId).then(() => {
+        router.push('/');
+      });
+    }
   };
 
   console.warn('thisis my post id', viewPost.id);
@@ -58,25 +65,13 @@ export default function ViewPost() {
           }}
         />
         <Card.Body>
-
-          <Card.Text>
-            Tags: {viewPost.tags.map((tag) => tag.label).join(', ')}
-          </Card.Text>
+          <Card.Text>Tags: {viewPost.tags.map((tag) => tag.label).join(', ')}</Card.Text>
           <Card.Text>Posted by: {user.name}</Card.Text>
         </Card.Body>
       </Card>
 
       {/* Comments list */}
-      {viewPost.comments && viewPost.comments.map((comment) => (
-        <Comment
-          key={comment.id}
-          content={comment.content}
-          isUserComment={comment.user.id === user.id}
-          onEdit={() => handleEdit(comment.id)}
-          onDelete={() => handleDelete(comment.id)}
-          commentUser={comment.user}
-        />
-      ))}
+      {viewPost.comments && viewPost.comments.map((comment) => <Comment key={comment.id} content={comment.content} isUserComment={comment.user.id === user.id} onEdit={() => handleEdit(comment.id)} onDelete={() => handleDelete(comment.id, comment.content)} commentUser={comment.user} />)}
 
       <Button
         onClick={() => router.push({
@@ -88,7 +83,6 @@ export default function ViewPost() {
       >
         Add Comment
       </Button>
-
     </>
   );
 }

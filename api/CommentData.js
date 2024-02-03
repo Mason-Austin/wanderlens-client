@@ -15,9 +15,7 @@ const getComments = () => new Promise((resolve, reject) => {
 const getMyComments = (uid) => new Promise((resolve, reject) => {
   fetch(`${clientCredentials.databaseURL}/comments`, {
     method: 'GET',
-    body: JSON.stringify(
-      uid,
-    ),
+    body: JSON.stringify(uid),
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/json',
@@ -60,28 +58,23 @@ const deleteSingleComment = (id) => new Promise((resolve, reject) => {
       Accept: 'application/json',
     },
   })
-    .then((resp) => resolve(resp.json()))
+    .then((resp) => resolve(resp))
     .catch(reject);
 });
 
 const updateComment = (payload) => new Promise((resolve, reject) => {
   fetch(`${clientCredentials.databaseURL}/comments/${payload.id}`, {
-    method: 'PATCH',
+    method: 'PUT',
     body: JSON.stringify(payload),
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/json',
     },
   })
-    .then((resp) => resolve(resp.json()))
+    .then((resp) => resolve(resp))
     .catch(reject);
 });
 
 export {
-  getComments,
-  getMyComments,
-  getSingleComment,
-  createComment,
-  deleteSingleComment,
-  updateComment,
+  getComments, getMyComments, getSingleComment, createComment, deleteSingleComment, updateComment,
 };
