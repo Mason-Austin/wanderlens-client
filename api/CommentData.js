@@ -60,7 +60,7 @@ const deleteSingleComment = (id) => new Promise((resolve, reject) => {
       Accept: 'application/json',
     },
   })
-    .then((resp) => resolve(resp.json()))
+    .then((resp) => resolve(resp))
     .catch(reject);
 });
 
