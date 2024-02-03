@@ -20,9 +20,8 @@ const getPosts = () => new Promise((resolve, reject) => {
 });
 
 const getMyPosts = (id) => new Promise((resolve, reject) => {
-  fetch(`${clientCredentials.databaseURL}/posts`, {
+  fetch(`${clientCredentials.databaseURL}/posts?user=${id}`, {
     method: 'GET',
-    body: JSON.stringify(id),
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/json',
@@ -91,14 +90,14 @@ const deleteSinglePost = (id) => new Promise((resolve, reject) => {
 
 const updatePost = (payload) => new Promise((resolve, reject) => {
   fetch(`${clientCredentials.databaseURL}/posts/${payload.id}`, {
-    method: 'PATCH',
+    method: 'PUT',
     body: JSON.stringify(payload),
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/json',
     },
   })
-    .then((resp) => resolve(resp.json()))
+    .then((resp) => resolve(resp))
     .catch(reject);
 });
 

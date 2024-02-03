@@ -3,11 +3,11 @@ import { getMyPosts } from '../api/PostData';
 import PostCard from '../components/Postcard';
 import { useAuth } from '../utils/context/authContext';
 
-function MyPosts() {
+function MyPosts(id) {
   const { user } = useAuth();
   const [posts, setPosts] = useState([]);
   const getAllMyPosts = () => {
-    getMyPosts().then(setPosts);
+    getMyPosts(id).then(setPosts);
   };
 
   useEffect(() => {
