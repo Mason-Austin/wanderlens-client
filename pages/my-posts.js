@@ -7,7 +7,7 @@ function MyPosts() {
   const { user } = useAuth();
   const [posts, setPosts] = useState([]);
   const getAllMyPosts = () => {
-    getMyPosts().then(setPosts);
+    getMyPosts(user.id).then(setPosts);
   };
 
   useEffect(() => {

@@ -4,21 +4,19 @@ import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import { useAuth } from '../utils/context/authContext';
-import { createComment } from '../api/CommentData';
-import { getSinglePost } from '../api/PostData';
+import { createComment, updateComment } from '../api/CommentData';
 
 const initialState = {
   content: '',
 };
 
-function CommentForm() {
+function CommentForm({ obj }) {
   const [formInput, setFormInput] = useState(initialState);
-  const [post, setPost] = useState({});
   const router = useRouter();
   const { user } = useAuth();
   const { id } = router.query;
+  console.warn('this is the obj content id =>', obj);
 
-  console.warn('this is my user', user);
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormInput((prevState) => ({
@@ -28,25 +26,39 @@ function CommentForm() {
   };
 
   useEffect(() => {
-    getSinglePost(id).then((data) => setPost(data));
-  }, [id]);
+    if (obj.content) {
+      setFormInput({ content: obj.content });
+    }
+  }, [obj]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    const payload = { ...formInput, userId: user.id, postId: post.id };
-    createComment(payload).then(() => router.push('/post')); // change to /post/id
+    if (obj.content) {
+      // Corrected to pass the necessary data for updating a comment
+      const payload = { ...formInput, id: obj.id };
+      updateComment(payload).then(() => router.push('/post/1'));
+    } else {
+      // Corrected to ensure the correct payload is sent when creating a comment
+      const payload = { ...formInput, userId: user.id, postId: id }; // Using the post ID from the URL
+      createComment(payload).then(() => router.push(`/post/${id}`));
+    }
   };
 
   return (
     <Form onSubmit={handleSubmit}>
-      <h2 className="text-white mt-5">Create Post</h2>
-      {/* CONTENT TEXTAREA  */}
+      <h2 className="text-white mt-5">{obj.content ? 'Update ' : 'Create '}Comment</h2>
       <FloatingLabel controlId="floatingTextarea" label="Info" className="mb-3">
-        <Form.Control as="textarea" placeholder="Enter Info" style={{ height: '100px' }} name="content" value={formInput.content} onChange={handleChange} required />
+        <Form.Control
+          as="textarea"
+          placeholder="Enter Info"
+          style={{ height: '100px' }}
+          name="content"
+          value={formInput.content}
+          onChange={handleChange}
+          required
+        />
       </FloatingLabel>
-      {/* SUBMIT BUTTON  */}
-      <Button type="submit">Create Comment</Button>
+      <Button type="submit">{obj.content ? 'Update ' : 'Create '}Comment</Button>
     </Form>
   );
 }

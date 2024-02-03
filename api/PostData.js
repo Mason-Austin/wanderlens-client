@@ -20,9 +20,8 @@ const getPosts = () => new Promise((resolve, reject) => {
 });
 
 const getMyPosts = (id) => new Promise((resolve, reject) => {
-  fetch(`${clientCredentials.databaseURL}/posts`, {
+  fetch(`${clientCredentials.databaseURL}/posts?user=${id}`, {
     method: 'GET',
-    body: JSON.stringify(id),
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/json',
