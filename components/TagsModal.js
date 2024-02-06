@@ -3,9 +3,9 @@ import React, { useEffect, useState } from 'react';
 import { PropTypes } from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import { getTags } from '../api/Tagdata';
+import { addTagToPost, getTags, removeTagfromPost } from '../api/Tagdata';
 
-function TagsModal({ post }) {
+function TagsModal({ post, onUpdate}) {
   // Simulating tags with a state
   const [tags, setTags] = useState([]); // Initial tags
 
@@ -14,12 +14,14 @@ function TagsModal({ post }) {
   }, []);
 
   // Function to handle deleting the last tag
-  const deleteTag = (tagId) => {
+  const deleteTag = (tagId, postId) => {
     console.warn('deleted tag', tagId);
+    removeTagfromPost(postId, tagId).then(onUpdate(postId));
   };
 
-  const addTag = (tagId) => {
+  const addTag = (tagId, postId) => {
     console.warn('added tag ', tagId);
+    addTagToPost(postId, tagId).then(onUpdate(postId));
   };
 
   const isTagInPost = (postTags, tag) => postTags.some((postTag) => postTag.id === tag.id);
@@ -27,9 +29,9 @@ function TagsModal({ post }) {
   const tagsController = (postTags, tag) => {
     const tagExists = isTagInPost(postTags, tag);
     if (tagExists) {
-      deleteTag(tag.id);
+      deleteTag(tag.id, post.id);
     } else {
-      addTag(tag.id);
+      addTag(tag.id, post.id);
     }
   };
 
@@ -39,9 +41,6 @@ function TagsModal({ post }) {
         <Modal.Header closeButton>
           <Modal.Title>
             Tags
-            <Button variant="outline-danger" size="sm" onClick={deleteTag} style={{ marginLeft: '5px' }}>
-              Delete
-            </Button>
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>

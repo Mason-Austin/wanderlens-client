@@ -15,10 +15,13 @@ export default function ViewPost() {
   const { id } = router.query;
   const { user } = useAuth();
 
+  const getPost = (postId) => {
+    getSinglePost(postId).then(setPost);
+  };
   // Fetch the post data when component mounts or id changes
   useEffect(() => {
     if (id) {
-      getSinglePost(id).then(setPost);
+      getPost(id);
     }
   }, [id]);
 
@@ -91,7 +94,7 @@ export default function ViewPost() {
       </Button>
 
       {/* TagsModal for editing tags */}
-      {showTagsModal && <TagsModal post={viewPost} show={showTagsModal} onHide={toggleTagsModal} />}
+      {showTagsModal && <TagsModal post={viewPost} show={showTagsModal} onHide={toggleTagsModal} onUpdate={getPost} />}
     </>
   );
 }
