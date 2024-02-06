@@ -12,6 +12,19 @@ const getTags = () => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const addTagToPost = (postId, tagIdObject) => new Promise((resolve, reject) => {
+  fetch(`${clientCredentials.databaseURL}/posts/${postId}/add_tag_to_post`, {
+    method: 'POST',
+    body: JSON.stringify({ tagId: tagIdObject }),
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+  })
+    .then((resp) => resolve(resp))
+    .catch(reject);
+});
+
 const createTag = (payload) => new Promise((resolve, reject) => {
   fetch(`${clientCredentials.databaseURL}/tags`, {
     method: 'POST',
@@ -33,19 +46,20 @@ const getSingleTag = (id) => new Promise((resolve, reject) => {
       Accept: 'application/json',
     },
   })
-    .then((resp) => resolve(resp.json()))
+    .then((resp) => resolve(resp))
     .catch(reject);
 });
 
-const deleteSingleTag = (id) => new Promise((resolve, reject) => {
-  fetch(`${clientCredentials.databaseURL}/tags/${id}`, {
+const removeTagfromPost = (postId, tagIdObject) => new Promise((resolve, reject) => {
+  fetch(`${clientCredentials.databaseURL}/posts/${postId}/remove_tag_from_post`, {
     method: 'DELETE',
+    body: JSON.stringify({ tagId: tagIdObject }),
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/json',
     },
   })
-    .then((resp) => resolve(resp.json()))
+    .then((resp) => resolve(resp))
     .catch(reject);
 });
 
@@ -66,6 +80,7 @@ export {
   getTags,
   getSingleTag,
   createTag,
-  deleteSingleTag,
+  addTagToPost,
+  removeTagfromPost,
   updateTag,
 };
