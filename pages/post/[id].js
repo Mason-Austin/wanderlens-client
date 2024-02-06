@@ -52,11 +52,18 @@ export default function ViewPost() {
         style={{
           width: '18rem',
           margin: '10px',
-          background: 'grey',
+          background: 'bisque',
           boxShadow: '0px 0px 10px rgba(255, 255, 255, 0.5)',
+          border: 'antiquewhite 10px solid',
+          borderRadius: '5px',
         }}
       >
-        <Card.Title>{viewPost.title}</Card.Title>
+        <Card.Title
+          style={{
+            alignSelf: 'center',
+          }}
+        >{viewPost.title}
+        </Card.Title>
         <Card.Img
           variant="top"
           src={viewPost.image_url}
@@ -68,8 +75,21 @@ export default function ViewPost() {
         />
         <Card.Body>
           <Card.Text>Tags: {viewPost.tags.map((tag) => tag.label).join(', ')}</Card.Text>
-          <Button variant="primary" onClick={toggleTagsModal}>Tags</Button>
-          <Card.Text>Posted by: {user.name}</Card.Text>
+          {(user.id === viewPost.user?.id) ? (
+            <Button
+              variant="primary"
+              style={{
+                background: 'goldenrod', border: 'goldenrod', textShadow: '0 0 2px #000', marginLeft: '10px',
+              }}
+              onClick={toggleTagsModal}
+            >Tags
+            </Button>
+          ) : (
+            <Button variant="warning" size="sm" disabled style={{ marginLeft: '10px' }}>
+              Tags
+            </Button>
+          )}
+          <Card.Text>Posted by: <b>{viewPost.user?.name}</b></Card.Text>
         </Card.Body>
       </Card>
 
@@ -86,9 +106,11 @@ export default function ViewPost() {
       ))}
 
       <Button
-        onClick={() => router.push('/comment/[id]', { query: { id: viewPost.id } })}
+        onClick={() => router.push({ pathname: '/comment/[id]', query: { id: viewPost.id } })}
         variant="primary"
-        style={{ marginTop: '10px' }}
+        style={{
+          background: 'goldenrod', border: 'goldenrod', marginTop: '10px', textShadow: '0 0 2px #000',
+        }}
       >
         Add Comment
       </Button>

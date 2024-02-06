@@ -15,11 +15,13 @@ function Signin() {
         width: '100%',
         minWidth: '30rem',
         paddingBlock: '0 5rem',
+        color: 'bisque',
+        textShadow: '0 0 2px #000',
       }}
     >
       <h1>Hi there!</h1>
-      <p>Click the button below to login!</p>
-      <Button type="button" size="lg" className="copy-btn" onClick={signIn}>
+      <p>Click the button below to login.</p>
+      <Button type="button" style={{ textShadow: '0 0 2px #000', background: 'goldenrod', border: 'goldenrod' }} size="lg" className="copy-btn" onClick={signIn}>
         Sign In
       </Button>
     </div>

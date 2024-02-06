@@ -6,10 +6,10 @@ function Comment({
   content, isUserComment, onEdit, onDelete, commentUser,
 }) {
   return (
-    <Card style={{ marginBottom: '10px' }}>
+    <Card style={{ marginBottom: '10px', backgroundColor: 'antiquewhite' }}>
       <Card.Body>
         <Card.Text>
-          {isUserComment ? 'My comment: ' : `${commentUser.name}:${' '}`}
+          {isUserComment ? <b>My comment: </b> : <b>{commentUser.name}:{' '}</b>}
           {content}
         </Card.Text>
         {isUserComment && (
@@ -28,8 +28,7 @@ Comment.propTypes = {
   isUserComment: PropTypes.bool.isRequired,
   onEdit: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
-  // eslint-disable-next-line react/forbid-prop-types
-  commentUser: PropTypes.object.isRequired,
+  commentUser: PropTypes.shape({ name: PropTypes.string }).isRequired,
 };
 
 export default Comment;

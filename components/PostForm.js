@@ -1,4 +1,4 @@
-import { React, useState } from 'react';
+import { React, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
@@ -25,6 +25,16 @@ function PostForm({ obj }) {
     }));
   };
 
+  useEffect(() => {
+    if (obj.id) {
+      setFormInput({
+        title: obj.title,
+        content: obj.content,
+        imageUrl: obj.imageUrl,
+      });
+    }
+  }, [obj]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (obj.id) {
@@ -38,26 +48,14 @@ function PostForm({ obj }) {
 
   return (
     <Form onSubmit={handleSubmit}>
-      <h2 className="text-white mt-5">{obj.id ? 'Update' : 'Create'} Post</h2>
-
-      {/* USER INPUT  */}
-      {/* <FloatingLabel controlId="floatingInput3" label="" className="mb-3">
-        <Form.Control
-          type="text"
-          placeholder="Enter user"
-          name="user"
-          value={formInput.user_id?.uid}
-          onChange={handleChange}
-          disabled
-          // readOnly
-        />
-      </FloatingLabel> */}
+      <h2 className="text-warning mt-5" style={{ textShadow: '0 0 2px #000' }}>{obj.id ? 'Update' : 'Create'} Post</h2>
 
       {/* TITLE INPUT  */}
       <FloatingLabel controlId="floatingInput1" label="Post Title" className="mb-3">
         <Form.Control
           type="text"
           placeholder="Enter a title"
+          style={{ backgroundColor: 'antiquewhite' }}
           name="title"
           value={formInput.title}
           onChange={handleChange}
@@ -69,7 +67,8 @@ function PostForm({ obj }) {
       <FloatingLabel controlId="floatingInput2" label="Post Image" className="mb-3">
         <Form.Control
           type="url"
-          placeholder="Enter an image url"
+          placeholder="Enter an Image-Url"
+          style={{ backgroundColor: 'antiquewhite' }}
           name="imageUrl"
           value={formInput.imageUrl}
           onChange={handleChange}
@@ -82,7 +81,7 @@ function PostForm({ obj }) {
         <Form.Control
           as="textarea"
           placeholder="Enter Info"
-          style={{ height: '100px' }}
+          style={{ height: '100px', background: 'antiquewhite' }}
           name="content"
           value={formInput.content}
           onChange={handleChange}
@@ -91,7 +90,7 @@ function PostForm({ obj }) {
       </FloatingLabel>
 
       {/* SUBMIT BUTTON  */}
-      <Button type="submit">{obj.id ? 'Update' : 'Create'} Post</Button>
+      <Button style={{ background: 'goldenrod', border: 'goldenrod', textShadow: '0 0 2px #000' }} type="submit">{obj.id ? 'Update' : 'Create'} Post</Button>
     </Form>
   );
 }

@@ -19,7 +19,7 @@ function Home() {
   return (
     <div className="text-center my-4">
       <Link href="/post/new" passHref>
-        <Button>Make A Post</Button>
+        <Button style={{ background: 'goldenrod', border: 'goldenrod', textShadow: '0 0 2px #000' }}>Make A Post</Button>
       </Link>
       <div className="d-flex flex-wrap" style={{ justifyContent: 'space-evenly' }}>
         {posts.map((post) => (
