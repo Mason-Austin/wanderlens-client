@@ -15,7 +15,7 @@ function PostCard({ postObject, onUpdate }) {
   };
 
   const editMyPost = () => (user.id === postObject.user?.id ? (
-    <Button variant="info" style={{ boxShadow: '0px 1rem 1.5rem rgba(0, 0, 0, 0.5)' }}>
+    <Button variant="outline-info" style={{ boxShadow: '0px 1rem 1.5rem rgba(0, 0, 0, 0.5)' }}>
       EDIT
     </Button>
   ) : (''));
@@ -25,8 +25,10 @@ function PostCard({ postObject, onUpdate }) {
       style={{
         width: '18rem',
         margin: '10px',
-        background: 'grey',
+        background: 'bisque',
         boxShadow: '0px 0px 10px rgba(255, 255, 255, 0.5)',
+        border: 'antiquewhite 10px solid',
+        borderRadius: '5px',
       }}
     >
       <Card.Img
@@ -37,14 +39,14 @@ function PostCard({ postObject, onUpdate }) {
           height: '100%',
           width: '100%',
           boxShadow: '0px 1rem 1.5rem rgba(0, 0, 0, 0.5)',
-          objectFit: 'contain',
+          objectFit: 'fill',
         }}
       />
       <Card.Body>
         <Card.Title>{postObject.title}</Card.Title>
         {/* DYNAMIC LINK TO VIEW THE POST DETAILS  */}
         <Link href={`/post/${postObject.id}`} passHref>
-          <Button variant="primary" className="m-2" style={{ boxShadow: '0px 0px 10px rgba(255, 255, 255, 0.5)' }}>
+          <Button variant="warning" className="m-2" style={{ boxShadow: '0px 0px 10px rgba(255, 255, 255, 0.5)' }}>
             VIEW
           </Button>
         </Link>
@@ -53,7 +55,7 @@ function PostCard({ postObject, onUpdate }) {
           {editMyPost()}
         </Link>
         {(user.id === postObject.user?.id) ? (
-          <Button variant="danger" style={{ boxShadow: '0px 1rem 1.5rem rgba(0, 0, 0, 0.5)' }} onClick={deleteThisPost} className="m-2">
+          <Button variant="outline-danger" style={{ boxShadow: '0px 1rem 1.5rem rgba(0, 0, 0, 0.5)' }} onClick={deleteThisPost} className="m-2">
             DELETE
           </Button>
         ) : ('')}

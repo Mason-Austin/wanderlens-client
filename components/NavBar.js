@@ -15,24 +15,25 @@ export default function NavBar() {
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container fluid>
         <Link passHref href="/">
-          <Navbar.Brand>Wander Lens</Navbar.Brand>
+          <Navbar.Brand style={{ color: 'goldenrod' }}>Wander Lens</Navbar.Brand>
         </Link>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
             <Link passHref href="/">
-              <Nav.Link>Home</Nav.Link>
+              <Nav.Link style={{ color: 'bisque' }}>Home</Nav.Link>
             </Link>
             <Link passHref href="/post/new">
-              <Nav.Link>Create Post</Nav.Link>
+              <Nav.Link style={{ color: 'bisque' }}>Create Post</Nav.Link>
             </Link>
             <Link passHref href="/my-posts">
-              <Nav.Link>My Posts</Nav.Link>
+              <Nav.Link style={{ color: 'bisque' }}>My Posts</Nav.Link>
             </Link>
           </Nav>
           <img
             src={user.fbUser.photoURL}
             alt="User profile"
+            className="ms-auto"
             style={{
               width: '40px',
               height: '40px',

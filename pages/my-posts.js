@@ -19,16 +19,22 @@ function MyPosts() {
   console.warn(getMyPosts);
   return (
     <div
-      className="text-center d-flex flex-column justify-content-center align-content-center"
+      className="text-center d-flex"
       style={{
         height: '90vh',
         padding: '30px',
         maxWidth: '400px',
-        margin: '0 auto',
       }}
     >
-      <h1>{user.fbUser.displayName}&apos;s Posts! </h1>
-      <div className="d-flex flex-wrap" style={{ justifyContent: 'space-evenly' }}>
+      <div
+        className="text-center d-flex flex-row"
+        style={{
+          textAlign: 'left', color: 'goldenrod', textShadow: '0 0 2px #000',
+        }}
+      >
+        <h1><b>{user.name}&apos;s Posts!</b></h1>
+      </div>
+      <div className="d-flex align-content-start flex-row" style={{ justifyContent: 'space-evenly' }}>
         {posts.map((post) => (
           <PostCard key={post.id} postObject={post} onUpdate={getAllMyPosts} />
         ))}
@@ -38,5 +44,6 @@ function MyPosts() {
 
   );
 }
+// "text-center d-flex flex-column justify-content-center align-content-center"
 
 export default MyPosts;

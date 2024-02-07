@@ -46,19 +46,19 @@ function CommentForm({ obj }) {
 
   return (
     <Form onSubmit={handleSubmit}>
-      <h2 className="text-white mt-5">{obj.content ? 'Update ' : 'Create '}Comment</h2>
+      <h2 className="text-warning mt-5">{obj.content ? 'Update ' : 'Create '}Comment</h2>
       <FloatingLabel controlId="floatingTextarea" label="Info" className="mb-3">
         <Form.Control
           as="textarea"
           placeholder="Enter Info"
-          style={{ height: '100px' }}
+          style={{ height: '100px', background: 'antiquewhite' }}
           name="content"
           value={formInput.content}
           onChange={handleChange}
           required
         />
       </FloatingLabel>
-      <Button type="submit">{obj.content ? 'Update ' : 'Create '}Comment</Button>
+      <Button type="submit" style={{ background: 'goldenrod', border: 'goldenrod' }}>{obj.content ? 'Update ' : 'Create '}Comment</Button>
     </Form>
   );
 }
