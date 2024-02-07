@@ -30,7 +30,8 @@ function PostForm({ obj }) {
       setFormInput({
         title: obj.title,
         content: obj.content,
-        imageUrl: obj.imageUrl,
+        // eslint-disable-next-line react/prop-types
+        imageUrl: obj.image_url,
       });
     }
   }, [obj]);

@@ -7,6 +7,7 @@ import {
 } from 'react-bootstrap';
 import { signOut } from '../utils/auth';
 import { useAuth } from '../utils/context/authContext';
+import SearchBar from './SearchBar';
 
 export default function NavBar() {
   const { user } = useAuth();
@@ -30,6 +31,7 @@ export default function NavBar() {
               <Nav.Link style={{ color: 'bisque' }}>My Posts</Nav.Link>
             </Link>
           </Nav>
+          <SearchBar />
           <img
             src={user.fbUser.photoURL}
             alt="User profile"
