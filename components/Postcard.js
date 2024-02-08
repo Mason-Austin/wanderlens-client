@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
@@ -8,6 +8,7 @@ import { useAuth } from '../utils/context/authContext';
 
 function PostCard({ postObject, onUpdate }) {
   const { user } = useAuth();
+  const [likes, setlikes] = useState(false);
   const deleteThisPost = () => {
     if (window.confirm(`Do you want to Delete the Post ${postObject.title}?`)) {
       deleteSinglePost(postObject.id).then(() => onUpdate());
@@ -33,6 +34,7 @@ function PostCard({ postObject, onUpdate }) {
     >
       <Card.Img
         variant="top"
+        onDoubleClick={() => setlikes(!likes)}
         src={postObject.image_url}
         alt={postObject.name}
         style={{
@@ -44,12 +46,14 @@ function PostCard({ postObject, onUpdate }) {
       />
       <Card.Body>
         <Card.Title>{postObject.title}</Card.Title>
+        <i className="fa-regular fa-heart" />
         {/* DYNAMIC LINK TO VIEW THE POST DETAILS  */}
         <Link href={`/post/${postObject.id}`} passHref>
           <Button variant="warning" className="m-2" style={{ boxShadow: '0px 0px 10px rgba(255, 255, 255, 0.5)' }}>
             VIEW
           </Button>
         </Link>
+
         {/* DYNAMIC LINK TO EDIT THE POST DETAILS  */}
         <Link href={`/post/edit/${postObject.id}`} passHref>
           {editMyPost()}
@@ -59,6 +63,9 @@ function PostCard({ postObject, onUpdate }) {
             DELETE
           </Button>
         ) : ('')}
+        <h5>
+          {likes ? '💛' : ' 🤍'}
+        </h5>
       </Card.Body>
     </Card>
   );

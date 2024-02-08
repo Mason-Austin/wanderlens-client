@@ -18,29 +18,16 @@ function MyPosts() {
 
   console.warn(getMyPosts);
   return (
-    <div
-      className="text-center d-flex"
-      style={{
-        height: '90vh',
-        padding: '30px',
-        maxWidth: '400px',
-      }}
-    >
-      <div
-        className="text-center d-flex flex-row"
-        style={{
-          textAlign: 'left', color: 'goldenrod', textShadow: '0 0 2px #000',
-        }}
-      >
-        <h1><b>{user.name}&apos;s Posts!</b></h1>
-      </div>
-      <div className="d-flex align-content-start flex-row" style={{ justifyContent: 'space-evenly' }}>
+
+    <>
+      <h1 className="text-center">{user.name}&apos;s posts</h1>
+
+      <div className="d-flex flex-wrap" style={{ justifyContent: 'space-evenly' }}>
         {posts.map((post) => (
           <PostCard key={post.id} postObject={post} onUpdate={getAllMyPosts} />
         ))}
       </div>
-
-    </div>
+    </>
 
   );
 }
