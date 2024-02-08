@@ -29,7 +29,7 @@ const SearchPage = () => {
   }, [searchTerm, posts]);
 
   return (
-    <div>
+    <div className="d-flex flex-wrap" style={{ justifyContent: 'space-evenly' }}>
       {/* Render your filtered results */}
       {filteredPosts.map((post) => (
         <PostCard key={post.id} postObject={post} onUpdate={posts} />
